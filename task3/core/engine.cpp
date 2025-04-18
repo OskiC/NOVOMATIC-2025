@@ -34,6 +34,8 @@ namespace oc {
         sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Novomatic Task 3",
                                 sf::Style::Titlebar | sf::Style::Close);
 
+        sf::Clock deltaClock;
+
         while (window.isOpen()) {
             sf::Event event;
             while (window.pollEvent(event)) {
@@ -41,19 +43,20 @@ namespace oc {
                     window.close();
                 }
             }
+            sf::Time dt = deltaClock.restart();
 
-            inputHandler();
+            inputHandler(dt);
             reDraw(window);
         }
 
     }
 
-    void Engine::inputHandler() {
+    void Engine::inputHandler(sf::Time dt) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            triangles[0].move(sf::Keyboard::A);
+            triangles[0].move(sf::Keyboard::A, dt);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            triangles[0].move(sf::Keyboard::D);
+            triangles[0].move(sf::Keyboard::D, dt);
         }
     }
 
