@@ -58,6 +58,12 @@ namespace oc {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
             triangles[0].move(sf::Keyboard::D, dt);
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+            triangles[0].move(sf::Keyboard::W, dt);
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+            triangles[0].move(sf::Keyboard::S, dt);
+        }
     }
 
 

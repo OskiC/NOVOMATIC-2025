@@ -25,12 +25,23 @@ namespace oc {
                 pointsPlace[0].x -= movementSpeed * dt.asSeconds();
                 pointsPlace[1].x -= movementSpeed * dt.asSeconds();
                 pointsPlace[2].x -= movementSpeed * dt.asSeconds();
-            break;
+                break;
             case sf::Keyboard::D:
                 pointsPlace[0].x += movementSpeed * dt.asSeconds();
                 pointsPlace[1].x += movementSpeed * dt.asSeconds();
                 pointsPlace[2].x += movementSpeed * dt.asSeconds();
-            break;
+                break;
+            case sf::Keyboard::W:
+                pointsPlace[0].y -= movementSpeed * dt.asSeconds();
+                pointsPlace[1].y -= movementSpeed * dt.asSeconds();
+                pointsPlace[2].y -= movementSpeed * dt.asSeconds();
+                break;
+            case sf::Keyboard::S:
+                pointsPlace[0].y += movementSpeed * dt.asSeconds();
+                pointsPlace[1].y += movementSpeed * dt.asSeconds();
+                pointsPlace[2].y += movementSpeed * dt.asSeconds();
+                break;
+
             default:break;
         }
     }
