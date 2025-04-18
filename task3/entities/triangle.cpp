@@ -19,4 +19,21 @@ namespace oc {
         target.draw(points);
     }
 
+    void Triangle::move(sf::Keyboard::Key key) {
+        switch (key) {
+            case sf::Keyboard::A:
+                pointsPlace[0].x -= movementSpeed;
+                pointsPlace[1].x -= movementSpeed;
+                pointsPlace[2].x -= movementSpeed;
+            break;
+            case sf::Keyboard::D:
+                pointsPlace[0].x += movementSpeed;
+                pointsPlace[1].x += movementSpeed;
+                pointsPlace[2].x += movementSpeed;
+            break;
+            default:break;
+        }
+    }
+
+
 } // oc
