@@ -12,6 +12,9 @@ FetchContent_MakeAvailable(SFML)
 add_executable(task3 main.cpp
         core/engine.cpp
         core/engine.h
+        entities/triangle.cpp
+        entities/triangle.h
+        helper/vec2.h
 )
 
 target_link_libraries(task3 PRIVATE sfml-graphics)
