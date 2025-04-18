@@ -11,6 +11,7 @@ namespace oc {
     class Engine {
         void reDraw(sf::RenderWindow &window);
         std::vector<Triangle> triangles;
+        void inputHandler(const sf::Event &event);
 
     public:
         Engine();

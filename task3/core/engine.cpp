@@ -40,10 +40,18 @@ namespace oc {
                 if (event.type == sf::Event::Closed) {
                     window.close();
                 }
+                else if (event.type == sf::Event::KeyPressed) {
+                    inputHandler(event);
+                }
             }
             reDraw(window);
         }
 
     }
+
+    void Engine::inputHandler(const sf::Event &event) {
+        triangles[0].move(event.key.code);
+    }
+
 
 } // oc
