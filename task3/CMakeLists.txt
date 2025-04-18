@@ -15,6 +15,7 @@ add_executable(task3 main.cpp
         entities/triangle.cpp
         entities/triangle.h
         helper/vec2.h
+        helper/utils.h
 )
 
 target_link_libraries(task3 PRIVATE sfml-graphics)

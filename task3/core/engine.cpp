@@ -4,6 +4,8 @@
 
 #include "engine.h"
 
+#include "../helper/utils.h"
+
 namespace oc {
     Engine::Engine() {
         //initialize 2 triangles
@@ -19,6 +21,8 @@ namespace oc {
         };
         triangles.push_back(Triangle(255,255,255, spawn1));
         triangles.push_back(Triangle(120,120,120, spawn2));
+
+        this->font.loadFromFile("../fonts/OptimusPrinceps.ttf");
     }
 
     void Engine::reDraw(sf::RenderWindow &window) {
@@ -26,6 +30,14 @@ namespace oc {
         for (auto& triangle : triangles) {
             triangle.draw(window);
         }
+
+        if (isColliding(triangles[0], triangles[1])) {
+            sf::Text text("YOU DIED", this->font, 50);
+            text.setFillColor(sf::Color::Red);
+            text.setPosition(WINDOW_WIDTH / 2.f - 150.f, WINDOW_HEIGHT / 2.f - 25.f);
+            window.draw(text);
+        }
+
         window.display();
     }
 
@@ -49,6 +61,25 @@ namespace oc {
             reDraw(window);
         }
 
+    }
+
+    bool Engine::isColliding(const Triangle &triangle1, const Triangle &triangle2) {
+        const auto& pts1 = triangle1.getPointsPlace();
+        const auto& pts2 = triangle2.getPointsPlace();
+
+        for (const vec2& p : pts1) {
+            if (pointInTriangle(p, pts2[0], pts2[1], pts2[2])) {
+                return true;
+            }
+        }
+
+        for (const vec2& p : pts2) {
+            if (pointInTriangle(p, pts1[0], pts1[1], pts1[2])) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     void Engine::inputHandler(sf::Time dt) {
