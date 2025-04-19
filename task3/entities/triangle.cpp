@@ -20,29 +20,39 @@ namespace oc {
     }
 
     void Triangle::move(sf::Keyboard::Key key, sf::Time dt) {
-        switch (key) {
-            case sf::Keyboard::A:
-                pointsPlace[0].x -= movementSpeed * dt.asSeconds();
-                pointsPlace[1].x -= movementSpeed * dt.asSeconds();
-                pointsPlace[2].x -= movementSpeed * dt.asSeconds();
-                break;
-            case sf::Keyboard::D:
-                pointsPlace[0].x += movementSpeed * dt.asSeconds();
-                pointsPlace[1].x += movementSpeed * dt.asSeconds();
-                pointsPlace[2].x += movementSpeed * dt.asSeconds();
-                break;
-            case sf::Keyboard::W:
-                pointsPlace[0].y -= movementSpeed * dt.asSeconds();
-                pointsPlace[1].y -= movementSpeed * dt.asSeconds();
-                pointsPlace[2].y -= movementSpeed * dt.asSeconds();
-                break;
-            case sf::Keyboard::S:
-                pointsPlace[0].y += movementSpeed * dt.asSeconds();
-                pointsPlace[1].y += movementSpeed * dt.asSeconds();
-                pointsPlace[2].y += movementSpeed * dt.asSeconds();
-                break;
+        vec2 moveOffset{0.f, 0.f};
 
-            default:break;
+        float distance = movementSpeed * dt.asSeconds();
+
+        switch (key) {
+            case sf::Keyboard::A: moveOffset.x = -distance;
+                break;
+            case sf::Keyboard::D: moveOffset.x = distance;
+                break;
+            case sf::Keyboard::W: moveOffset.y = -distance;
+                break;
+            case sf::Keyboard::S: moveOffset.y = distance;
+                break;
+            default:
+                break;
+        }
+
+        bool canMove = true;
+        for (const vec2& p : pointsPlace) {
+            float newX = p.x + moveOffset.x;
+            float newY = p.y + moveOffset.y;
+
+            if (newX < 0 || newX > WINDOW_WIDTH || newY < 0 || newY > WINDOW_HEIGHT) {
+                canMove = false;
+                break;
+            }
+        }
+
+        if (canMove) {
+            for (vec2& p : pointsPlace) {
+                p.x += moveOffset.x;
+                p.y += moveOffset.y;
+            }
         }
     }
 

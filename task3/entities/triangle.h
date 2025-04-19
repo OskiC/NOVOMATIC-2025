@@ -3,6 +3,7 @@
 
 #include <array>
 #include "../helper/vec2.h"
+#include "../helper/config.h"
 #include "SFML/Graphics.hpp"
 
 namespace oc {
