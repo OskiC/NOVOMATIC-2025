@@ -22,7 +22,7 @@ namespace oc {
         triangles.push_back(Triangle(255,255,255, spawn1));
         triangles.push_back(Triangle(120,120,120, spawn2));
 
-        this->font.loadFromFile("../fonts/OptimusPrinceps.ttf");
+        this->font.loadFromFile("fonts/OptimusPrinceps.ttf");
     }
 
     void Engine::reDraw(sf::RenderWindow &window) {
@@ -34,7 +34,7 @@ namespace oc {
         if (isColliding(triangles[0], triangles[1])) {
             sf::Text text("YOU DIED", this->font, 50);
             text.setFillColor(sf::Color::Red);
-            text.setPosition(WINDOW_WIDTH / 2.f - 150.f, WINDOW_HEIGHT / 2.f - 25.f);
+            text.setPosition(WINDOW_WIDTH / 2.f - 120, WINDOW_HEIGHT / 2.f - 25.f);
             window.draw(text);
         }
 
