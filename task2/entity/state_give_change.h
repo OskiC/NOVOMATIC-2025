@@ -1,0 +1,22 @@
+//
+// Created by xoska on 19.04.2025.
+//
+
+#ifndef STATE_GIVE_CHANGE_H
+#define STATE_GIVE_CHANGE_H
+
+#include "machine_state.h"
+
+namespace oc {
+
+    class MachineStateGiveChange : public MachineState {
+        void HandleInsertCoin() override;
+        void HandleSelectTicket() override;
+        void HandlePrintTicket() override;
+        void HandleGiveChange() override;
+        void HandleFinishAndReset() override;
+    };
+
+} // oc
+
+#endif //STATE_GIVE_CHANGE_H
