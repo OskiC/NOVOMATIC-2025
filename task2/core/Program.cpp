@@ -7,6 +7,7 @@
 namespace oc {
     void Program::run() {
         Context context(new MachineStateCoinInsertion());
+        context.InsertCoin();
     }
 
 } // oc

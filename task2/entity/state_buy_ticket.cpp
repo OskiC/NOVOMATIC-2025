@@ -5,6 +5,11 @@
 #include "state_buy_ticket.h"
 
 namespace oc {
+    MachineStateBuyTicket::MachineStateBuyTicket(int balance) {
+        this->balance_ = balance;
+    }
+
+
     void MachineStateBuyTicket::HandleInsertCoin() {}
 
     void MachineStateBuyTicket::HandleSelectTicket() {

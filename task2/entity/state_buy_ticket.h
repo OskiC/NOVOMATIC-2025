@@ -10,6 +10,12 @@
 namespace oc {
 
     class MachineStateBuyTicket : public MachineState {
+    private:
+        int balance_;
+
+    public:
+        explicit MachineStateBuyTicket(int balance);
+
         void HandleInsertCoin() override;
         void HandleSelectTicket() override;
         void HandlePrintTicket() override;
