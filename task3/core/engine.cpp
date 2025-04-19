@@ -15,9 +15,9 @@ namespace oc {
             vec2{100, WINDOW_HEIGHT-150}
         };
         constexpr std::array<vec2, 3> spawn2 = {
-            vec2{WINDOW_WIDTH, WINDOW_HEIGHT-10},
-            vec2{WINDOW_WIDTH-200, WINDOW_HEIGHT-10},
-            vec2{WINDOW_WIDTH-100, WINDOW_HEIGHT-150}
+            vec2{WINDOW_WIDTH-550, WINDOW_HEIGHT-250},
+            vec2{WINDOW_WIDTH-750, WINDOW_HEIGHT-250},
+            vec2{WINDOW_WIDTH-650, WINDOW_HEIGHT-390}
         };
         triangles.push_back(Triangle(255,255,255, spawn1));
         triangles.push_back(Triangle(120,120,120, spawn2));
