@@ -4,8 +4,7 @@
 #include <iostream>
 #include "../entities/triangle.h"
 #include "SFML/Graphics.hpp"
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+
 
 namespace oc {
 
