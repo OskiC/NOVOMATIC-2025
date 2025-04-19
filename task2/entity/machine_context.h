@@ -32,6 +32,9 @@ namespace oc {
         std::stack<MachineState *> getHistory() const {
             return history_;
         }
+        MachineState* getCurrentState() const {
+            return machineState_;
+        }
     };
 
 
