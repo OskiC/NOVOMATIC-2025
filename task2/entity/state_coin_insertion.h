@@ -5,7 +5,7 @@
 #ifndef STATE_COIN_INSERTION_H
 #define STATE_COIN_INSERTION_H
 
-#include <iostream>
+#include <limits>
 #include "machine_state.h"
 #include "../helper/clear.h"
 
