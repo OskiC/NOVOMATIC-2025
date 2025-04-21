@@ -4,6 +4,7 @@
 
 #include "state_coin_insertion.h"
 
+#include "exit_override.h"
 
 
 namespace oc {
@@ -28,7 +29,7 @@ namespace oc {
                 std::cout << "Returning coins...\n";
                 std::cout << "Leaving the bus....\n";
                 context_->Shutdown();
-                std::exit(0);
+                ExitProgram(0);
             }
             if (coin == -1) {
                 Clear();

@@ -19,4 +19,6 @@ add_executable(task2 main.cpp
         entity/state_give_change.h
         entity/state_ticket_printed.cpp
         entity/state_ticket_printed.h
-        helper/clear.h)
+        helper/clear.h
+        entity/exit_override.cpp
+        entity/exit_override.h)
