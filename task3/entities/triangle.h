@@ -14,7 +14,9 @@ class Triangle {
     float movementSpeed = 200.f;
 
 public:
+    Triangle(){}
     Triangle(sf::Uint8 r, sf::Uint8 g, sf::Uint8 b, const std::array<vec2, 3> &spawn_point);
+    Triangle(const std::array<vec2, 3> &points);
     void draw(sf::RenderTarget &target);
     void move(sf::Keyboard::Key key, sf::Time dt);
 

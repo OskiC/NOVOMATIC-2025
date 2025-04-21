@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include "../entities/triangle.h"
-#include "SFML/Graphics.hpp"
-
 
 namespace oc {
 
@@ -14,13 +12,13 @@ namespace oc {
 
         void reDraw(sf::RenderWindow &window);
         void inputHandler(sf::Time dt);
-        bool isColliding(const Triangle &triangle1, const Triangle &triangle2);
 
     public:
         Engine();
 
         void run();
 
+        bool isColliding(const Triangle &triangle1, const Triangle &triangle2);
 };
 
 } // oc

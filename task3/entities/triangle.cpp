@@ -10,6 +10,13 @@ namespace oc {
         this->b = b;
     }
 
+    Triangle::Triangle(const std::array<vec2, 3> &points) {
+        for (int i = 0; i < 3; i++) {
+            this->pointsPlace[i] = {points[i].x, points[i].y};
+        }
+    }
+
+
     void Triangle::draw(sf::RenderTarget &target) {
         sf::VertexArray points(sf::PrimitiveType::Triangles, 3);
         for (int i = 0; i < 3; i++) {
