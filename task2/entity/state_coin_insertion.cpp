@@ -25,9 +25,10 @@ namespace oc {
                 continue;
             }
             if (coin == -2) {
+                std::cout << "Returning coins...\n";
                 std::cout << "Leaving the bus....\n";
-                context_->goBack();
-                return;
+                context_->Shutdown();
+                std::exit(0);
             }
             if (coin == -1) {
                 context_->goBack();
@@ -50,7 +51,7 @@ namespace oc {
                 std::cout << "Wrong amount!\n";
             }
             std::cout << "If you want to buy ticket enter: 0\n";
-            std::cout << "To go back enter: -1\n\n";
+            std::cout << "To go back enter: -1,\n-2 to exit\n\n";
         }
     }
 

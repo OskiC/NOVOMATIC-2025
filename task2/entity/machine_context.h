@@ -34,6 +34,8 @@ namespace oc {
         MachineState* getCurrentState() const {
             return machineState_;
         }
+
+        void Shutdown();
     };
 
 

@@ -59,4 +59,15 @@ namespace oc {
     void Context::FinishAndReset() {
         machineState_->HandleFinishAndReset();
     }
+
+    void Context::Shutdown() {
+        delete machineState_;
+        machineState_ = nullptr;
+
+        while (!history_.empty()) {
+            delete history_.top();
+            history_.pop();
+        }
+    }
+
 } // oc

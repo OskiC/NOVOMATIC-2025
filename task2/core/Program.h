@@ -13,9 +13,9 @@ namespace oc {
     class Program {
 
     public:
-        Program(){};
+        Program() = default;
 
-        void run();
+        static void run();
     };
 
 } // oc
