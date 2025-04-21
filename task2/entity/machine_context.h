@@ -6,7 +6,6 @@
 #define MACHINE_CONTEXT_H
 
 #include "machine_state.h"
-#include <iostream>
 #include <stack>
 
 namespace oc {
@@ -29,7 +28,7 @@ namespace oc {
         void GiveChange();
         void FinishAndReset();
 
-        std::stack<MachineState *> getHistory() const {
+        std::stack<MachineState *>& getHistory(){
             return history_;
         }
         MachineState* getCurrentState() const {

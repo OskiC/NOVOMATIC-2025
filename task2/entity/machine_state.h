@@ -5,6 +5,8 @@
 #ifndef MACHINESTATE_H
 #define MACHINESTATE_H
 
+#include <iostream>
+
 namespace oc {
     class Context;
 
