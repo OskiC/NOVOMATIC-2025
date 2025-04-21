@@ -6,10 +6,17 @@
 #define STATE_GIVE_CHANGE_H
 
 #include "machine_state.h"
+#include "../helper/clear.h"
 
 namespace oc {
 
     class MachineStateGiveChange : public MachineState {
+    private:
+        int balance_;
+
+    public:
+        explicit MachineStateGiveChange(int balance);
+
         void HandleInsertCoin() override;
         void HandleSelectTicket() override;
         void HandlePrintTicket() override;
