@@ -16,12 +16,12 @@ template<typename T> struct Data {
     uint8_t count;
 };
 
-constexpr size_t sizeX{7};
-constexpr size_t sizeY{3};
+constexpr size_t sizeX{32};
+constexpr size_t sizeY{16};
 
 
-template<typename T>
-using Array2D = std::array<std::array<T, sizeX>, sizeY>;
+template<typename T, size_t Rows, size_t Cols>
+using Array2D = std::array<std::array<T, Cols>, Rows>;
 
 template<typename T>
 using CompressedData = std::vector<Data<T>>;
@@ -29,30 +29,28 @@ using CompressedData = std::vector<Data<T>>;
 template<typename T>
 using CompressedDataArray = std::optional<std::vector<CompressedData<T>>>;
 
-template<typename T>
-CompressedDataArray<T> compressedData(const Array2D<T>& input) {
+template<typename T, size_t Rows, size_t Cols>
+CompressedDataArray<T> compressedData(const Array2D<T, Rows, Cols>& input) {
     CompressedDataArray<T> result = std::vector<CompressedData<T>>{};
 
 
-    for (size_t i = 0; i < sizeY; i++) {
+    for (size_t i = 0; i < Rows; i++) {
         T value = input[i][0];
         uint8_t count = 1;
 
         CompressedData<T> compressedDataRow;
 
-        for (size_t j = 1; j < sizeX; j++) {
+        for (size_t j = 1; j < Cols; j++) {
             if (input[i][j] == value) {
                 count++;
             }
             else {
-                Data<T> data = {value, count};
-                compressedDataRow.push_back(data);
+                compressedDataRow.push_back({value, count});
                 value = input[i][j];
                 count = 1;
             }
         }
-        Data<T> data = {value, count};
-        compressedDataRow.push_back(data);
+        compressedDataRow.push_back({value, count});
 
         result->push_back(compressedDataRow);
     }
@@ -62,7 +60,7 @@ CompressedDataArray<T> compressedData(const Array2D<T>& input) {
         compressedSize += row.size();
     }
 
-    if (compressedSize >= sizeX * sizeY) {
+    if (compressedSize >= Rows * Cols) {
         return std::nullopt;
     }
     return result;

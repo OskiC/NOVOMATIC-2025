@@ -1,7 +1,7 @@
 #include "Data.h"
 
 int main() {
-    Array2D<int> input = {
+    Array2D<int, 3, 7> input = {
         {
             {0, 0, 0, 1, 1, 2, 3},
            {0, 0, 4, 4, 4, 2, 2},
