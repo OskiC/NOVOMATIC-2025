@@ -4,9 +4,7 @@
 
 #include "state_buy_ticket.h"
 
-#include "machine_context.h"
-#include "state_print_ticket.h"
-#include "state_ticket_printed.h"
+
 
 namespace oc {
     MachineStateBuyTicket::MachineStateBuyTicket(int balance) {
@@ -33,6 +31,7 @@ namespace oc {
             std::cin >> choice;
 
             if (choice == -1) {
+                Clear();
                 context_->goBack();
                 return;
             }

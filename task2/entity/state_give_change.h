@@ -7,6 +7,8 @@
 
 #include "machine_state.h"
 #include "../helper/clear.h"
+#include "machine_context.h"
+#include "state_ticket_printed.h"
 
 namespace oc {
 

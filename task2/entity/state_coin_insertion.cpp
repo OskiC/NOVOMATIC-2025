@@ -4,8 +4,7 @@
 
 #include "state_coin_insertion.h"
 
-#include "machine_context.h"
-#include "state_buy_ticket.h"
+
 
 namespace oc {
     void MachineStateCoinInsertion::HandleInsertCoin() {

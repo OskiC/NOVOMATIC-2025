@@ -4,10 +4,6 @@
 
 #include "state_give_change.h"
 
-#include "machine_context.h"
-#include "state_ticket_printed.h"
-
-
 namespace oc {
 
     void MachineStateGiveChange::HandleInsertCoin(){}

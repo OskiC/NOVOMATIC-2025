@@ -6,6 +6,9 @@
 #define STATE_BUY_TICKET_H
 
 #include "machine_state.h"
+#include "machine_context.h"
+#include "state_print_ticket.h"
+#include "state_ticket_printed.h"
 
 namespace oc {
 

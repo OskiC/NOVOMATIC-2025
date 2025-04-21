@@ -6,6 +6,8 @@
 #define STATE_PRINT_TICKET_H
 
 #include "machine_state.h"
+#include "machine_context.h"
+#include "state_give_change.h"
 
 namespace oc {
 

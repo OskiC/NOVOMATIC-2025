@@ -8,6 +8,8 @@
 #include <limits>
 #include "machine_state.h"
 #include "../helper/clear.h"
+#include "machine_context.h"
+#include "state_buy_ticket.h"
 
 namespace oc {
 

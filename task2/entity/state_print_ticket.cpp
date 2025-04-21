@@ -4,9 +4,6 @@
 
 #include "state_print_ticket.h"
 
-#include "machine_context.h"
-#include "state_give_change.h"
-
 namespace oc {
     MachineStatePrintTicket::MachineStatePrintTicket(int balance) {
         this->balance_ = balance;
