@@ -9,7 +9,9 @@
 
 inline void Clear(){
     #if defined _WIN32 || defined(WIN64)
+    #ifndef UNIT_TESTING
         system("cls");
+    #endif
     #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
         system("clear");
     #endif

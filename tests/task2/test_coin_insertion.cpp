@@ -76,3 +76,26 @@ TEST_F(CoinInsertionTest, TryToBuyTicketWithoutBalance) {
 
     EXPECT_NE(output.find("Please insert some coins first"), std::string::npos);
 }
+
+TEST_F(CoinInsertionTest, InsertInvalidAndValidCoins) {
+    SetInput("abc\n-5\n2\n0\n");  // Invalid input, wrong amount, valid coin, try to proceed
+
+    context->InsertCoin();
+    std::string output = GetOutput();
+
+    EXPECT_NE(output.find("INVALID INPUT!"), std::string::npos);
+    EXPECT_NE(output.find("Wrong amount!"), std::string::npos);
+    EXPECT_NE(output.find("Balance: 2"), std::string::npos);
+}
+
+TEST_F(CoinInsertionTest, InsertValidAndGoBack) {
+    SetInput("5\n-1\n0\n5\n0\n");
+
+    context->InsertCoin();
+    std::string output = GetOutput();
+
+    EXPECT_NE(output.find("Balance: 5"), std::string::npos);
+    EXPECT_NE(output.find("Balance: 0"), std::string::npos);
+    EXPECT_NE(output.find("Please insert some coins first"), std::string::npos);
+    EXPECT_NE(output.find("Balance: 5"), std::string::npos);
+}
