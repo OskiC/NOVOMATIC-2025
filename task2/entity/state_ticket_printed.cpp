@@ -27,8 +27,14 @@ namespace oc {
         std::cout << "Have a good day! :)\n";
         std::cout << "Enter any key to continue\n";
 
+        if (std::cin.peek() == '\n') {
+            std::cin.ignore();
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+
         std::string choice;
-        std::cin >> choice;
+        std::getline(std::cin, choice);
         ResetToInitialState(context_);
 
         context_->InsertCoin();
