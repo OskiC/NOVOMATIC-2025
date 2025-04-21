@@ -28,7 +28,13 @@ namespace oc {
         while (true) {
             std::cout << "Your balance: " << balance_ << " PLN\n";
             std::cout << "Select ticket (1-5): ";
-            std::cin >> choice;
+
+            if (!(std::cin >> choice)) {
+                std::cout << "INVALID INPUT!\n";
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                continue;
+            }
 
             if (choice == -1) {
                 Clear();

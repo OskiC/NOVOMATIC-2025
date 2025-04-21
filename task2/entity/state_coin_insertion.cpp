@@ -20,6 +20,7 @@ namespace oc {
             std::cout << "Balance: " << balance_ << "\n";
 
             if (!(std::cin >> coin)) {
+                Clear();
                 std::cout << "INVALID INPUT!\n";
                 std::cin.clear();
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -51,6 +52,7 @@ namespace oc {
                 balance_ += coin;
                 Clear();
             } else {
+                Clear();
                 std::cout << "Wrong amount!\n";
             }
         }
