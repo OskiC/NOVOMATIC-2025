@@ -19,7 +19,7 @@ namespace oc {
             context->getHistory().pop();
         }
 
-        context->TransitionTo(new MachineStateCoinInsertion());
+        context->ReplaceCurrentState(new MachineStateCoinInsertion());
     }
 
     void MachineStateTicketPrinted::HandleFinishAndReset() {

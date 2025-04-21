@@ -8,14 +8,14 @@
 
 namespace oc {
     void MachineStateCoinInsertion::HandleInsertCoin() {
-        std::cout << "==Coin insertion==\n";
-        std::cout << "Enter coin you want to insert(example: 1, 3, 8)\n";
-        std::cout << "If you want to buy ticket enter: 0\n";
-        std::cout << "To go back enter: -1\n";
-        std::cout << "To exit the bus(if you don't want to buy ticket), enter -2!\n";
 
         int coin;
         while (true) {
+            std::cout << "==Coin insertion==\n";
+            std::cout << "Enter coin you want to insert(example: 1, 3, 8)\n";
+            std::cout << "If you want to buy ticket enter: 0\n";
+            std::cout << "To go back enter: -1\n";
+            std::cout << "To exit the bus(if you don't want to buy ticket), enter -2!\n";
             std::cout << "Balance: " << balance_ << "\n";
 
             if (!(std::cin >> coin)) {
@@ -31,8 +31,10 @@ namespace oc {
                 std::exit(0);
             }
             if (coin == -1) {
-                context_->goBack();
-                return;
+                Clear();
+                balance_ = 0;
+
+                continue;
             }
 
             if (coin == 0) {
@@ -50,8 +52,6 @@ namespace oc {
             } else {
                 std::cout << "Wrong amount!\n";
             }
-            std::cout << "If you want to buy ticket enter: 0\n";
-            std::cout << "To go back enter: -1,\n-2 to exit\n\n";
         }
     }
 

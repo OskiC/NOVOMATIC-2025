@@ -69,5 +69,12 @@ namespace oc {
             history_.pop();
         }
     }
+    void Context::ReplaceCurrentState(MachineState* state) {
+        if (machineState_) {
+            delete machineState_;
+        }
+        machineState_ = state;
+        machineState_->setContext(this);
+    }
 
 } // oc

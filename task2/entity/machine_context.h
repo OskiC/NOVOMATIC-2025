@@ -36,6 +36,7 @@ namespace oc {
         }
 
         void Shutdown();
+        void ReplaceCurrentState(MachineState* state);
     };
 
 
