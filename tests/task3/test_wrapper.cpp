@@ -32,3 +32,27 @@ TEST_F(CalculateTest, WrapperDouble) {
     Wrapper<double> sum = w + Wrapper<double>(1.2);
     EXPECT_EQ(sum.value, 3.5);
 }
+
+TEST_F(CalculateTest, WrapperChar) {
+    Wrapper<char> w('A');
+    EXPECT_EQ(w.value, 'A');
+    EXPECT_EQ(Wrapper<char>::identity().value, '\0');
+    Wrapper<char> sum = w + Wrapper<char>('B');
+    EXPECT_NE(sum.value, 'A' + 'B');
+}
+
+TEST_F(CalculateTest, WrapperFloat) {
+    Wrapper<float> w(1.25f);
+    EXPECT_EQ(w.value, 1.25f);
+    EXPECT_EQ(Wrapper<float>::identity().value, 0.f);
+    Wrapper<float> sum = w + Wrapper<float>(1.24f);
+    EXPECT_EQ(sum.value, 2.49f);
+}
+
+TEST_F(CalculateTest, WrapperBool) {
+    Wrapper<bool> w(true);
+    EXPECT_EQ(w.value, true);
+    EXPECT_EQ(Wrapper<bool>::identity().value, false);
+    Wrapper<bool> sum = w + Wrapper<bool>(false);
+    EXPECT_EQ(sum.value, true);
+}
