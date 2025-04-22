@@ -2,23 +2,32 @@ cmake_minimum_required(VERSION 3.28)
 project(task2)
 
 set(CMAKE_CXX_STANDARD 17)
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+include(FetchContent)
+FetchContent_Declare(SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.6.x)
+FetchContent_MakeAvailable(SFML)
 
 add_executable(task2 main.cpp
-        core/Program.cpp
-        core/Program.h
-        entity/machine_state.h
-        entity/machine_context.cpp
-        entity/machine_context.h
-        entity/state_coin_insertion.cpp
-        entity/state_coin_insertion.h
-        entity/state_buy_ticket.cpp
-        entity/state_buy_ticket.h
-        entity/state_print_ticket.cpp
-        entity/state_print_ticket.h
-        entity/state_give_change.cpp
-        entity/state_give_change.h
-        entity/state_ticket_printed.cpp
-        entity/state_ticket_printed.h
-        helper/clear.h
-        entity/exit_override.cpp
-        entity/exit_override.h)
+        core/engine.cpp
+        core/engine.h
+        entities/triangle.cpp
+        entities/triangle.h
+        helper/vec2.h
+        helper/utils.h
+        helper/config.h
+)
+
+target_link_libraries(task2 PRIVATE sfml-graphics)
+target_compile_features(task2 PRIVATE cxx_std_17)
+
+if(WIN32)
+    add_custom_command(
+            TARGET task2
+            COMMENT "Copy OpenAL DLL"
+            PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:task2>
+            VERBATIM)
+endif()
+
+install(TARGETS task2)

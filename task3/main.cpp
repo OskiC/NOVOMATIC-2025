@@ -1,9 +1,8 @@
-#include "core/engine.h"
+//
+// Created by xoska on 19.04.2025.
+//
 
-int main(){
-    oc::Engine engine;
-
-    engine.run();
+int main() {
 
     return 0;
 }

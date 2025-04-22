@@ -1,12 +1,9 @@
-//
-// Created by xoska on 19.04.2025.
-//
-#include "core/Program.h"
+#include "core/engine.h"
 
-int main() {
-    oc::Program program;
+int main(){
+    oc::Engine engine;
 
-    program.run();
+    engine.run();
 
     return 0;
 }

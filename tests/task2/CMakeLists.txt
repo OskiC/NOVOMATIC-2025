@@ -1,18 +1,31 @@
-file(GLOB TASK2_SRC_FILES
-        ${PROJECT_SOURCE_DIR}/task2/entity/*.cpp
-)
+cmake_minimum_required(VERSION 3.28)
+project(task2_tests)
 
-add_executable(task2_tests  test_coin_insertion.cpp
-        ${TASK2_SRC_FILES}
-)
+set(CMAKE_CXX_STANDARD 17)
 
-target_compile_definitions(task2_tests PRIVATE UNIT_TESTING)
+set(MAIN_PROJECT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../task2")
+
+include(FetchContent)
+FetchContent_Declare(
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.6.x
+)
+FetchContent_MakeAvailable(SFML)
+
+add_executable(task2_tests test_collision.cpp
+        ${MAIN_PROJECT_DIR}/core/engine.cpp
+        ${MAIN_PROJECT_DIR}/entities/triangle.cpp
+)
 
 target_include_directories(task2_tests PRIVATE
-        ${PROJECT_SOURCE_DIR}/task2
+        ${MAIN_PROJECT_DIR}/core
+        ${MAIN_PROJECT_DIR}/entities
+        ${MAIN_PROJECT_DIR}/helper
 )
 
-target_link_libraries(task2_tests
+target_link_libraries(task2_tests PRIVATE
+        sfml-graphics
         gtest_main
 )
 
