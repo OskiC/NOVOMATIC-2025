@@ -19,6 +19,17 @@ add_executable(task2 main.cpp
         helper/config.h
 )
 
+add_custom_command(
+        TARGET task2
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E make_directory
+        $<TARGET_FILE_DIR:task2>/fonts
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${CMAKE_SOURCE_DIR}/task2/fonts/OptimusPrinceps.ttf
+        $<TARGET_FILE_DIR:task2>/fonts
+        COMMENT "Copying font file to build/fonts directory"
+)
+
 target_link_libraries(task2 PRIVATE sfml-graphics)
 target_compile_features(task2 PRIVATE cxx_std_17)
 
