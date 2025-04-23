@@ -6,16 +6,12 @@
 
 namespace oc {
     Engine::Engine(const std::string& filename) {
-        if (load_from_file(filename)) {
-
-        }
-        else {
-            isSaved = false;
-        }
+        this->filename = filename;
+        load_from_file(filename);
     }
 
     bool Engine::load_from_file(const std::string& filename) {
-        std::fstream file(filename);
+        std::ifstream file(filename);
         if (!file.is_open()) {
             std::cout << "Error opening file!\n";
             return false;
@@ -30,17 +26,15 @@ namespace oc {
     }
 
     void Engine::save_to_file(const std::string& filename) {
-        std::fstream file(filename);
+        std::ofstream file(filename, std::ios::trunc);
         if (!file.is_open()) {
             std::cout << "Error opening file!\n";
             return;
         }
 
-        std::string s;
         for (const auto& [key, value] : queries_list) {
-            s = key;
             for (int i = 0; i < value; i++) {
-                file << s << "\n";
+                file << key << "\n";
             }
         }
     }
@@ -49,7 +43,7 @@ namespace oc {
         queries_list[query]++;
     }
 
-    std::vector<std::string> Engine::ask(std::string asked_query) {
+    std::vector<std::string> Engine::ask(const std::string& asked_query) {
         std::vector<std::string> result;
 
 
@@ -58,6 +52,7 @@ namespace oc {
 
     void Engine::choice_parser(const std::string& question) {
         if (question == "0") {
+            save_to_file(filename);
             exit(0);
         }
 
@@ -66,16 +61,14 @@ namespace oc {
             std::string query = question.substr(n + 2);
             addQuery(query);
         }
-
-        if (question.starts_with("> ask:")) {
+        else if (question.starts_with("> ask:")) {
             auto n = question.find(':');
             std::string query = question.substr(n + 2);
             std::vector<std::string> results = ask(query);
             format_results(results);
         }
-
         else {
-            std::cout << "Wrong command";
+            std::cout << "Wrong command\n";
         }
     }
 
