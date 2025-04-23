@@ -48,3 +48,22 @@ TEST_F(EngineTest, Ask) {
     std::vector<std::string> result = engine.ask("query");
     EXPECT_EQ(result, std::vector<std::string>({"query1", "query2", "query3"}));
 }
+//[TODO: SaveToFIle test]
+//
+// TEST_F(EngineTest, SaveToFile) {
+//     engine.addQuery("query4");
+//     EXPECT_EQ(engine.queries_list.at("query4"), 1);
+//
+//     engine.save_to_file();
+//
+//     oc::Engine new_engine(filename);
+//
+//     ASSERT_TRUE(new_engine.queries_list.contains("query4"));
+//     EXPECT_EQ(new_engine.queries_list.at("query4"), 1);
+// }
+TEST_F(EngineTest, ChoiceParserAdd) {
+    EXPECT_THROW(engine.queries_list.at("query4"), std::out_of_range);
+
+    engine.choice_parser("> add: query4");
+    EXPECT_EQ(engine.queries_list["query4"], 1);
+}
