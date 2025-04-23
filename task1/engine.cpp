@@ -7,7 +7,6 @@
 namespace oc {
     Engine::Engine(const std::string& filename){
         this->filename = filename;
-        load_from_file(filename);
     }
 
     void Engine::load_from_file(const std::string& filename) {
@@ -95,6 +94,7 @@ namespace oc {
 
 
     [[noreturn]] void Engine::run() {
+        load_from_file(filename);
         std::cout << "Welcome back in 1997! :D\n";
 
         std::string choice;

@@ -14,7 +14,12 @@
 namespace oc {
 
     class Engine {
+    #ifdef UNIT_TEST
+    public:
+    #else
     private:
+    #endif
+
         std::unordered_map<std::string, int> queries_list;
         std::string filename;
 
