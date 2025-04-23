@@ -6,6 +6,7 @@
 #define WRAPPER_H
 
 #include <iostream>
+#include <vector>
 
 template <typename T>
 class Wrapper {
@@ -47,4 +48,29 @@ public:
     }
 };
 
+template<>
+class Wrapper<char> {
+public:
+    std::vector<char> value;
+
+    Wrapper(char c) : value{c}{}
+    Wrapper(const std::vector<char>& v) : value(v){}
+
+    static Wrapper identity() {
+        return Wrapper({});
+    }
+
+    Wrapper operator+(const Wrapper& other) const {
+        std::vector<char> result = value;
+        result.insert(result.end(), other.value.begin(), other.value.end());
+        return Wrapper(result);
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Wrapper& obj) {
+        for (char c : obj.value) {
+            os << c;
+        }
+        return os;
+    }
+};
 #endif //WRAPPER_H
