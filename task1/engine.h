@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 
 namespace oc {
 
@@ -16,9 +17,10 @@ namespace oc {
     private:
         std::unordered_map<std::string, int> queries_list;
         bool isSaved;
+        std::string filename;
 
         void addQuery(const std::string& query);
-        std::vector<std::string> ask(std::string asked_query);
+        std::vector<std::string> ask(const std::string& asked_query);
 
         bool load_from_file(const std::string& filename);
         void save_to_file(const std::string& filename);
@@ -27,7 +29,7 @@ namespace oc {
         static void format_results(const std::vector<std::string>& results);
     public:
         Engine(const std::string& filename);
-        void run();
+        [[noreturn]] void run();
     };
 
 } // oc
