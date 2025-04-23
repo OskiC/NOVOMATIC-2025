@@ -67,3 +67,24 @@ TEST_F(EngineTest, ChoiceParserAdd) {
     engine.choice_parser("> add: query4");
     EXPECT_EQ(engine.queries_list["query4"], 1);
 }
+
+TEST_F(EngineTest, ChoiceParserAsk) {
+    engine.addQuery("query1");
+    engine.addQuery("query2");
+
+    testing::internal::CaptureStdout();
+    engine.choice_parser("> ask: query");
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "result: query1\nresult: query2\nresult: query3\n\n");
+}
+
+TEST_F(EngineTest, ChoiceParserInvalidInput) {
+    testing::internal::CaptureStdout();
+    engine.choice_parser("Something else");
+    std::string output = testing::internal::GetCapturedStdout();
+    EXPECT_EQ(output, "Wrong command\n");
+}
+
+TEST_F(EngineTest, ChoiceParserExit) {
+    ASSERT_EXIT(engine.choice_parser("0"), ::testing::ExitedWithCode(0), ".*");
+}
