@@ -3,7 +3,9 @@ project(task3_tests)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(task3_tests test_wrapper.cpp)
+add_executable(task3_tests test_wrapper.cpp
+        test_binaryop.cpp
+        test_calculate.cpp)
 
 target_include_directories(task3_tests PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../../task3
