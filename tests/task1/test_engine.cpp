@@ -4,6 +4,7 @@
 #define UNIT_TEST
 #include <gtest/gtest.h>
 #include "engine.h"
+#include <stdexcept>
 
 class EngineTest : public ::testing::Test {
 protected:
@@ -28,4 +29,14 @@ protected:
 TEST_F(EngineTest, LoadFromFileSuccess) {
     EXPECT_EQ(engine.queries_list["query1"], 2);
     EXPECT_EQ(engine.queries_list["query2"], 1);
+}
+
+TEST_F(EngineTest, AddQuery) {
+    engine.addQuery("query1");
+    EXPECT_EQ(engine.queries_list["query1"], 3);
+
+    EXPECT_THROW(engine.queries_list.at("query4"), std::out_of_range);
+
+    engine.addQuery("query4");
+    EXPECT_EQ(engine.queries_list["query4"], 1);
 }
