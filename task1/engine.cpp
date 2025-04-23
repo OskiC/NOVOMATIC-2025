@@ -10,11 +10,10 @@ namespace oc {
         load_from_file(filename);
     }
 
-    bool Engine::load_from_file(const std::string& filename) {
+    void Engine::load_from_file(const std::string& filename) {
         std::ifstream file(filename);
         if (!file.is_open()) {
             std::cout << "Error opening file!\n";
-            return false;
         }
 
         std::string s;
@@ -22,7 +21,6 @@ namespace oc {
             queries_list[s]++;
         }
         file.close();
-        return true;
     }
 
     void Engine::save_to_file() {
@@ -92,6 +90,7 @@ namespace oc {
         for (const auto& s : results) {
             std::cout << "result: " << s << "\n";
         }
+        std::cout << "\n";
     }
 
 
@@ -100,9 +99,9 @@ namespace oc {
 
         std::string choice;
         while (true) {
-            std::cout << "to add to list write: \"> add: QUERY\"\n";
-            std::cout << "to get result write: \"> ask: QUERY\"\n";
-            std::cout << "to leave write: \"0\"\n";
+            std::cout << "to add to the list, write: \"> add: QUERY\"\n";
+            std::cout << "to get results, write: \"> ask: QUERY\"\n";
+            std::cout << "to leave, write: \"0\"\n";
 
             std::getline(std::cin, choice);
 

@@ -16,13 +16,12 @@ namespace oc {
     class Engine {
     private:
         std::unordered_map<std::string, int> queries_list;
-        bool isSaved;
         std::string filename;
 
         void addQuery(const std::string& query);
         std::vector<std::string> ask(const std::string& asked_query);
 
-        bool load_from_file(const std::string& filename);
+        void load_from_file(const std::string& filename);
         void save_to_file();
 
         void choice_parser(const std::string& question);
