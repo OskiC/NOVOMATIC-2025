@@ -15,7 +15,34 @@ namespace oc {
     }
 
     bool Engine::load_from_file(const std::string& filename) {
+        std::fstream file(filename);
+        if (!file.is_open()) {
+            std::cout << "Error opening file!\n";
+            return false;
+        }
 
+        std::string s;
+        while (getline(file, s)) {
+            queries_list[s]++;
+        }
+        file.close();
+        return true;
+    }
+
+    void Engine::save_to_file(const std::string& filename) {
+        std::fstream file(filename);
+        if (!file.is_open()) {
+            std::cout << "Error opening file!\n";
+            return;
+        }
+
+        std::string s;
+        for (const auto& [key, value] : queries_list) {
+            s = key;
+            for (int i = 0; i < value; i++) {
+                file << s << "\n";
+            }
+        }
     }
 
     void Engine::addQuery(const std::string& query) {
