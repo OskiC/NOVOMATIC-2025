@@ -3,7 +3,9 @@ project(task1_tests)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(task1_tests test_engine.cpp)
+add_executable(task1_tests test_engine.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../task1/engine.cpp
+)
 
 target_include_directories(task1_tests PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../../task1
