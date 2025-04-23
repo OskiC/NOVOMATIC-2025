@@ -34,7 +34,7 @@ TEST_F(CalculateTest, BinayOpChar) {
     BinaryOp<char> op;
     Wrapper<char> a('a'), b('b');
     Wrapper<char> result = op(a, b);
-    EXPECT_NE(result.value, 'a' + 'b');
+    EXPECT_EQ(result.value, std::vector<char>({'a','b'}));
 }
 
 TEST_F(CalculateTest, BinaryOpFloat) {

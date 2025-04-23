@@ -35,10 +35,10 @@ TEST_F(CalculateTest, WrapperDouble) {
 
 TEST_F(CalculateTest, WrapperChar) {
     Wrapper<char> w('A');
-    EXPECT_EQ(w.value, 'A');
-    EXPECT_EQ(Wrapper<char>::identity().value, '\0');
+    EXPECT_EQ(w.value, std::vector<char>({'A'}));
+    EXPECT_EQ(Wrapper<char>::identity().value, std::vector<char>{});
     Wrapper<char> sum = w + Wrapper<char>('B');
-    EXPECT_NE(sum.value, 'A' + 'B');
+    EXPECT_EQ(sum.value, std::vector<char>({'A', 'B'}));
 }
 
 TEST_F(CalculateTest, WrapperFloat) {

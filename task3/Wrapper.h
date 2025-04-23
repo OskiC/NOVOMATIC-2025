@@ -57,7 +57,7 @@ public:
     Wrapper(const std::vector<char>& v) : value(v){}
 
     static Wrapper identity() {
-        return Wrapper({});
+        return Wrapper(std::vector<char>{});
     }
 
     Wrapper operator+(const Wrapper& other) const {

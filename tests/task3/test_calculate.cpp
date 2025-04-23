@@ -34,7 +34,7 @@ TEST_F(CalculateTest, CalculateFuncFloatTest) {
 
     auto result = calculate(n, val, BinaryOp<float>{});
 
-    EXPECT_EQ(result.value, 3.6f);
+    EXPECT_NEAR(result.value, 3.6f, 1e-5);
 }
 
 TEST_F(CalculateTest, CalculateFuncDoubleTest) {
@@ -43,7 +43,7 @@ TEST_F(CalculateTest, CalculateFuncDoubleTest) {
 
     auto result = calculate(n, val, BinaryOp<double>{});
 
-    EXPECT_EQ(result.value, 3.9);
+    EXPECT_NEAR(result.value, 3.9, 1e-10);
 }
 
 TEST_F(CalculateTest, CalculateFuncBoolTest) {
@@ -59,4 +59,20 @@ TEST_F(CalculateTest, CalculateFuncBoolTest) {
     auto result2 = calculate(m, val, BinaryOp<bool>{});
 
     EXPECT_EQ(result2.value, false);
+}
+
+TEST_F(CalculateTest, CalculateFuncCharTest) {
+    Wrapper<char> val('x');
+    int n = 3;
+
+    auto result = calculate(n, val, BinaryOp<char>{});
+
+    EXPECT_EQ(result.value, std::vector<char>({'x','x','x'}));
+
+    Wrapper<char> val2('b');
+    int m = 4;
+
+    auto result2 = calculate(m, val2, BinaryOp<char>{});
+
+    EXPECT_EQ(result2.value, std::vector<char>({'b','b','b','b'}));
 }
