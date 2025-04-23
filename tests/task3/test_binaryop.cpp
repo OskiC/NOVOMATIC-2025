@@ -43,3 +43,10 @@ TEST_F(CalculateTest, BinaryOpFloat) {
     Wrapper<float> result = op(a,b);
     EXPECT_EQ(result.value, 2.49f);
 }
+
+TEST_F(CalculateTest, BinaryOpBool) {
+    BinaryOp<bool> op;
+    Wrapper<bool> a(true), b(false);
+    Wrapper<bool> result = op(a, b);
+    EXPECT_EQ(result.value, true);
+}

@@ -39,7 +39,7 @@ public:
     }
 
     Wrapper operator+(const Wrapper& other) const {
-        return Wrapper(value || other.value);
+        return Wrapper(value ^ other.value);
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Wrapper& obj) {
