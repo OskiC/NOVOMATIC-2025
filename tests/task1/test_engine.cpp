@@ -40,3 +40,11 @@ TEST_F(EngineTest, AddQuery) {
     engine.addQuery("query4");
     EXPECT_EQ(engine.queries_list["query4"], 1);
 }
+
+TEST_F(EngineTest, Ask) {
+    engine.addQuery("query1");
+    engine.addQuery("query2");
+
+    std::vector<std::string> result = engine.ask("query");
+    EXPECT_EQ(result, std::vector<std::string>({"query1", "query2", "query3"}));
+}
