@@ -23,7 +23,7 @@ namespace oc {
         std::vector<std::string> ask(const std::string& asked_query);
 
         bool load_from_file(const std::string& filename);
-        void save_to_file(const std::string& filename);
+        void save_to_file();
 
         void choice_parser(const std::string& question);
         static void format_results(const std::vector<std::string>& results);
