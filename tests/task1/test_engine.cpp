@@ -1,7 +1,6 @@
 //
 // Created by xoska on 23.04.2025.
 //
-#define UNIT_TEST
 #include <gtest/gtest.h>
 #include "engine.h"
 #include <stdexcept>
