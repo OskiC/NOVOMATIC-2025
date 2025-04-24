@@ -37,6 +37,26 @@ namespace oc {
         file.close();
     }
 
+    bool Engine::is_query_valid(const std::string& query) {
+        if (query.empty()) {
+            return false;
+        }
+
+        auto n = query.find_first_of(':');
+        if (n == std::string::npos) {
+            return false;
+        }
+        if (n + 1 >= query.length()) {
+            return false;
+        }
+        if (query[n + 1] != ' ') {
+            return false;
+        }
+
+        return true;
+    }
+
+
     void Engine::addQuery(const std::string& query) {
         queries_list[query]++;
     }
@@ -52,7 +72,7 @@ namespace oc {
         }
 
         std::ranges::sort(pair_results,
-                          [](auto a, auto b) {
+                          [](const auto& a, const auto& b) {
                               return a.second > b.second;
                           });
 
@@ -69,16 +89,16 @@ namespace oc {
             exit(0);
         }
 
-        if (question.starts_with("> add:")) {
+        if (is_query_valid(question)) {
             auto n = question.find(':');
             std::string query = question.substr(n + 2);
-            addQuery(query);
-        }
-        else if (question.starts_with("> ask:")) {
-            auto n = question.find(':');
-            std::string query = question.substr(n + 2);
-            std::vector<std::string> results = ask(query);
-            format_results(results);
+            if (question.starts_with("> add:")) {
+                addQuery(query);
+            }
+            else if (question.starts_with("> ask:")) {
+                std::vector<std::string> results = ask(query);
+                format_results(results);
+            }
         }
         else {
             std::cout << "Wrong command\n";

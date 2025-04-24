@@ -26,6 +26,7 @@ namespace oc {
 
         void addQuery(const std::string& query);
         std::vector<std::string> ask(const std::string& asked_query);
+        bool is_query_valid(const std::string& query);
 
         void load_from_file(const std::string& filename);
         void save_to_file();
